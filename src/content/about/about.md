@@ -1,20 +1,23 @@
 ---
 title: "About"
-description: "About CapsuleX"
+description: "About ZeroAsh"
 ---
 
-## About CapsuleX
+## 我是…
 
-CapsuleX is a minimal blog theme built with Astro. It features a clean, modern design with capsule-shaped navigation and automatic dark/light mode support.
+一名前端2年，后端4年，全栈1年的软件开发工程师
 
-### Features
+### 我工作用…
 
-- Capsule floating navigation
-- Automatic dark/light mode
-- Fast page transitions
-- Mobile responsive
-- SEO friendly
+- Java/Node.js的后端生态
+- React/Vue的Web前端生态
 
-### Getting Started
+### 我业余用…
 
-Edit `src/content/about/about.md` to customize this page.
+- C#的后端生态
+- Blazor的Web前端生态
+- WinForm/WPF/Avalonia的客户端生态
+
+### 找我…？
+
+[admin@remiliascarlet.com](mailto:admin@remiliascarlet.com)
