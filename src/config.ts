@@ -3,31 +3,35 @@
 
 export const siteConfig = {
   // Site title — displayed in nav, footer, and page titles
-  title: 'CapsuleX',
+  title: 'ZeroAsh的碎碎念',
 
   // Site description — used in meta tags and hero section
-  description: 'A minimal blog theme with capsule design',
+  description: '写点什么好呢',
 
   // Author name — used in footer and meta author tag
-  author: 'wangjacks',
+  author: 'ZeroAsh',
 
   // Site URL — set before deployment (e.g., https://example.com)
   // Used for RSS feed and SEO
-  site: 'https://capsule-x-brown.vercel.app',
+  site: 'https://www.fffdan.com',
 
   // HTML lang attribute — affects SEO and accessibility
   lang: 'en',
 
+  beian: {
+    ICP: '黔ICP备2026013851号-1',
+  },
+
   // Navigation links — displayed in capsule nav bar
   nav: [
-    { title: 'Home', href: '/' },
-    { title: 'About', href: '/about' },
+    { title: '主页', href: '/' },
+    { title: '关于我', href: '/about' },
     { title: 'Tags', href: '/tags' },
   ],
 
   // Social links — leave empty to hide
   social: {
-    github: 'https://github.com/wangjacks/capsule-x',
+    github: 'https://github.com/deliay',
   },
 
   // Feature toggles
