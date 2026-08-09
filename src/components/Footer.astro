@@ -7,10 +7,11 @@ const year = new Date().getFullYear();
 <footer class="capsule-footer" transition:name="footer">
   <div class="footer-inner">
     <p class="footer-text">
-      © {year} {siteConfig.title}
+      © {year} {siteConfig.author} 
     </p>
     <div class="footer-divider"></div>
     <div class="footer-links">
+      {siteConfig.beian && <a href='https://beian.miit.gov.cn/' target="_blank" >{siteConfig.beian.ICP}</a>}
       {siteConfig.social.github && (
         <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -78,6 +79,7 @@ const year = new Date().getFullYear();
     justify-content: center;
     color: var(--text-tertiary);
     transition: color var(--transition-fast);
+    font-size: small;
   }
 
   .footer-links a:hover {
