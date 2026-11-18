@@ -1,0 +1,53 @@
+# Caddy configuration for the static Astro build output.
+#
+# Default: serve plain HTTP on :80 (put a TLS-terminating proxy/CDN in front).
+# To let Caddy handle TLS itself, set SITE_ADDRESS to your domain, e.g.
+#   SITE_ADDRESS=blog.example.com
+# then also expose port 443 and persist /data (certificates live there).
+{
+	admin off
+	# email you@example.com
+}
+
+{$SITE_ADDRESS::80} {
+	# Points at the Astro build output; overridable for local testing.
+	root * {$SITE_ROOT:/srv}
+
+	# On-the-fly compression; zstd preferred, gzip as fallback.
+	encode zstd gzip
+
+	# Cache policy. The matchers are mutually exclusive on purpose: Caddy sorts
+	# directives by type, not by position, so a catch-all header would silently
+	# override the more specific ones.
+
+	# Astro emits content-hashed filenames under /_astro, so cache them forever.
+	@immutable path /_astro/*
+	header @immutable Cache-Control "public, max-age=31536000, immutable"
+
+	# Files from public/ keep stable names, so use a shorter TTL.
+	@assets path /images/* /favicon.ico /favicon.svg /logo.svg /logo-full.svg
+	header @assets Cache-Control "public, max-age=604800"
+
+	# Everything else (HTML, RSS) must be revalidated.
+	@documents not path /_astro/* /images/* /favicon.ico /favicon.svg /logo.svg /logo-full.svg
+	header @documents Cache-Control "public, max-age=0, must-revalidate"
+
+	header {
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	# file_server already resolves directory indexes (/about/ -> /about/index.html)
+	# and redirects /about -> /about/ with a 308.
+	file_server
+
+	handle_errors {
+		@notFound expression {err.status_code} == 404
+		handle @notFound {
+			rewrite * /404.html
+			file_server
+		}
+		respond "{err.status_code} {err.status_text}" {err.status_code}
+	}
+}
