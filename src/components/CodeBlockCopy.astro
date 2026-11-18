@@ -6,6 +6,9 @@
   function initCodeBlockCopy() {
     // Add copy button and title to all code blocks
     document.querySelectorAll('pre').forEach((pre) => {
+      // Mermaid diagrams are rendered as <pre class="mermaid">; don't inject UI into them
+      if (pre.classList.contains('mermaid')) return;
+
       // Skip if already processed
       if (pre.querySelector('.copy-button')) return;
 

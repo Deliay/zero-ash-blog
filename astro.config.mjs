@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import mermaid from 'astro-mermaid';
 import { remarkAlert } from 'remark-github-blockquote-alert';
 import {
   transformerNotationDiff,
@@ -27,7 +28,18 @@ function transformerTitle() {
 // https://astro.build/config
 export default defineConfig({
   site: siteConfig.site || undefined,
-  integrations: [mdx()],
+  integrations: [
+    mermaid({
+      autoTheme: true,
+      theme: 'default',
+      enableLog: false,
+      mermaidConfig: {
+        flowchart: { curve: 'basis' },
+        sequence: { mirrorActors: false },
+      },
+    }),
+    mdx(),
+  ],
   markdown: {
     remarkPlugins: [remarkAlert],
     shikiConfig: {

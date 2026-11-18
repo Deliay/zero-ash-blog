@@ -299,7 +299,8 @@ import Search from './Search.astro';
         effectiveTheme = mode;
       }
 
-      html.setAttribute('data-theme', mode);
+      html.setAttribute('data-theme', effectiveTheme);
+      html.setAttribute('data-theme-preference', mode);
       html.classList.remove('dark', 'light');
       html.classList.add(effectiveTheme);
       localStorage.setItem('theme', mode);

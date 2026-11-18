@@ -40,7 +40,8 @@ const {
         const saved = localStorage.getItem('theme') || 'auto';
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const effectiveTheme = saved === 'auto' ? (prefersDark ? 'dark' : 'light') : saved;
-        document.documentElement.setAttribute('data-theme', saved);
+        document.documentElement.setAttribute('data-theme', effectiveTheme);
+        document.documentElement.setAttribute('data-theme-preference', saved);
         document.documentElement.classList.add(effectiveTheme);
       })();
 
@@ -49,7 +50,8 @@ const {
         const saved = localStorage.getItem('theme') || 'auto';
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const effectiveTheme = saved === 'auto' ? (prefersDark ? 'dark' : 'light') : saved;
-        document.documentElement.setAttribute('data-theme', saved);
+        document.documentElement.setAttribute('data-theme', effectiveTheme);
+        document.documentElement.setAttribute('data-theme-preference', saved);
         document.documentElement.classList.remove('dark', 'light');
         document.documentElement.classList.add(effectiveTheme);
       });
